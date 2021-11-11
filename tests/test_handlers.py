@@ -299,7 +299,7 @@ async def test_base_api_list_filter(http_client, base_url, url_param, cnt, monke
 @pytest.mark.parametrize('total', ['0', '1'])
 async def test_base_api_list_prefetch(http_client, base_url, test_data, app_base_handlers, total):
     # Create test FK models
-    for i in range(5):
+    for _ in range(5):
         await app_base_handlers.objects.create(ApiTestModelFK, tf_foreign_key=test_data[0])
 
     res = await http_client.fetch(base_url + '/test/api_test_model_prefetch/?total=%s' % total)

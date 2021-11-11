@@ -12,7 +12,7 @@ def json_serial(obj):
     :return: formatted and serialized object
     :rtype: str
     """
-    if isinstance(obj, datetime.datetime) or isinstance(obj, datetime.date):
+    if isinstance(obj, (datetime.datetime, datetime.date)):
         # Datetime serializer
         return obj.isoformat()
     elif isinstance(obj, uuid.UUID):

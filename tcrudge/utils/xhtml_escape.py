@@ -15,14 +15,10 @@ def __xhtml_escape_str(obj):
 
 @xhtml_escape_complex_object.register(dict)
 def __xhtml_escape_object_dict(obj):
-    escaped_dict = {}
-    for k, v in obj.items():
-        escaped_dict[k] = xhtml_escape_complex_object(v)
-    return escaped_dict
+    return {k: xhtml_escape_complex_object(v) for k, v in obj.items()}
 
 
 @xhtml_escape_complex_object.register(list)
 @xhtml_escape_complex_object.register(tuple)
 def __xhtml_escape_list(obj):
-    escaped_list = tuple(xhtml_escape_complex_object(i) for i in obj)
-    return escaped_list
+    return tuple(xhtml_escape_complex_object(i) for i in obj)
